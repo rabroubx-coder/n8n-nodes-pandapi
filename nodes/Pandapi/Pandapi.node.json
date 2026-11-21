@@ -1,0 +1,14 @@
+{
+	"node": "n8n-nodes-pandapi.pandapi",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Data & Storage", "Development", "Utility"],
+	"resources": {
+		"credentialDocumentation": [
+			{ "url": "https://github.com/rabroubx-coder/n8n-nodes-pandapi#credentials" }
+		],
+		"primaryDocumentation": [
+			{ "url": "https://github.com/rabroubx-coder/n8n-nodes-pandapi" }
+		]
+	}
+}

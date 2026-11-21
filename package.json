@@ -1,0 +1,65 @@
+{
+	"name": "n8n-nodes-pandapi",
+	"version": "0.1.1",
+	"description": "n8n node for Pandapi data tools: web pages and PDFs to Markdown, PDF tables to Excel, screenshots, broken links, website contacts, public tenders, App Store and Google Play reviews, postal codes, HTML to PDF, Hacker News and a profanity filter. Runs on your own Apify account.",
+	"license": "MIT",
+	"homepage": "https://github.com/rabroubx-coder/n8n-nodes-pandapi#readme",
+	"keywords": [
+		"n8n-community-node-package",
+		"n8n",
+		"pandapi",
+		"apify",
+		"web-scraping",
+		"markdown",
+		"pdf",
+		"pdf-tables",
+		"screenshot",
+		"broken-links",
+		"tenders",
+		"app-reviews"
+	],
+	"author": {
+		"name": "Pandapi",
+		"email": "rabroubx@gmail.com",
+		"url": "https://apify.com/blueberry_rainstorm"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/rabroubx-coder/n8n-nodes-pandapi.git"
+	},
+	"scripts": {
+		"build": "n8n-node build",
+		"lint": "n8n-node lint",
+		"lint:fix": "n8n-node lint --fix",
+		"test": "npm run build && node --test test/*.test.js",
+		"live": "node scripts/live-test.mjs"
+	},
+	"files": [
+		"dist",
+		"!dist/tsconfig.tsbuildinfo",
+		"!dist/**/*.map"
+	],
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"strict": true,
+		"credentials": [
+			"dist/credentials/PandapiApi.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/Pandapi/Pandapi.node.js"
+		]
+	},
+	"devDependencies": {
+		"@n8n/node-cli": "0.41.0",
+		"@types/node": "22.15.21",
+		"eslint": "9.39.4",
+		"prettier": "3.8.3",
+		"typescript": "5.9.3"
+	},
+	"peerDependencies": {
+		"n8n-workflow": "*"
+	},
+	"bugs": {
+		"url": "https://github.com/rabroubx-coder/n8n-nodes-pandapi/issues"
+	}
+}

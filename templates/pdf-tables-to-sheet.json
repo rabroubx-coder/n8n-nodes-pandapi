@@ -1,0 +1,75 @@
+{
+  "name": "PDF tables to rows (Pandapi)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "eb1555ef-b7a1-5f0f-a117-70eef1f2f0c5",
+      "name": "Start",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "urls": "https://www.w3.org/WAI/WCAG21/working-examples/pdf-table/table.pdf",
+        "additionalFields": {
+          "includeTables": true,
+          "spreadsheetOutput": "xlsx"
+        },
+        "options": {
+          "maxCostUsd": 0.1
+        }
+      },
+      "id": "71b42d39-ceca-5949-a673-4a5520a461df",
+      "name": "Extract PDF tables",
+      "type": "n8n-nodes-pandapi.pandapi",
+      "typeVersion": 1,
+      "position": [
+        240,
+        0
+      ],
+      "credentials": {
+        "pandapiApi": {
+          "id": "",
+          "name": "Pandapi (Apify) API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## PDF tables\nPut your PDF URLs (one per line) in the Pandapi node. Each result has the Markdown, the tables as rows, and a link to a ready Excel file. $3 per 1,000 PDFs on your Apify account.",
+        "height": 220,
+        "width": 420
+      },
+      "id": "c88a858e-cee3-5040-873b-0d57388e0407",
+      "name": "Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -40,
+        -260
+      ]
+    }
+  ],
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Extract PDF tables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}

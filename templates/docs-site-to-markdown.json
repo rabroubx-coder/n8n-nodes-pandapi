@@ -1,0 +1,102 @@
+{
+  "name": "Docs site to Markdown for RAG (Pandapi)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "eb1555ef-b7a1-5f0f-a117-70eef1f2f0c5",
+      "name": "Start",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "markdown",
+        "urls": "https://docs.n8n.io/",
+        "additionalFields": {
+          "crawl": true,
+          "maxPages": 25,
+          "chunkSize": 800
+        },
+        "options": {
+          "maxCostUsd": 0.1
+        }
+      },
+      "id": "dfaaf248-2f8e-5820-a3d3-bfc8468e686e",
+      "name": "Crawl docs to Markdown",
+      "type": "n8n-nodes-pandapi.pandapi",
+      "typeVersion": 1,
+      "position": [
+        240,
+        0
+      ],
+      "credentials": {
+        "pandapiApi": {
+          "id": "",
+          "name": "Pandapi (Apify) API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{ { url: $json.url, title: $json.title, markdown: $json.markdown, approxTokens: $json.approxTokens } }}",
+        "options": {}
+      },
+      "id": "a16cf014-5824-5628-8b05-71296c9bd024",
+      "name": "Keep page fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        480,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Docs site to Markdown\nCrawls up to 25 pages under the start URL and returns one item per page with clean Markdown and token counts (about $0.025 on your Apify account). Connect the last node to your vector store.",
+        "height": 220,
+        "width": 420
+      },
+      "id": "c88a858e-cee3-5040-873b-0d57388e0407",
+      "name": "Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -40,
+        -260
+      ]
+    }
+  ],
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Crawl docs to Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crawl docs to Markdown": {
+      "main": [
+        [
+          {
+            "node": "Keep page fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}

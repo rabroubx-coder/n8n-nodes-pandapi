@@ -1,0 +1,89 @@
+{
+  "name": "Daily public tender alerts (Pandapi)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 7
+            }
+          ]
+        }
+      },
+      "id": "96887b5f-e97e-5454-84dd-4058dab19dac",
+      "name": "Every morning",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "tenders",
+        "additionalFields": {
+          "keywords": "software\ncloud",
+          "postedWithinDays": 1,
+          "maxResults": 50,
+          "sources": [
+            "sam",
+            "ted",
+            "uk-fts",
+            "canadabuys"
+          ]
+        },
+        "options": {
+          "maxCostUsd": 0.2
+        }
+      },
+      "id": "31554edb-339e-5f9d-bb99-894a07770d87",
+      "name": "New tenders",
+      "type": "n8n-nodes-pandapi.pandapi",
+      "typeVersion": 1,
+      "position": [
+        240,
+        0
+      ],
+      "credentials": {
+        "pandapiApi": {
+          "id": "",
+          "name": "Pandapi (Apify) API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Daily tender alerts\nEvery day at 7:00, new SAM.gov, TED, UK and CanadaBuys notices from the last day that match your keywords. Connect an email, Slack or Sheets node after it. $2 per 1,000 notices.",
+        "height": 220,
+        "width": 420
+      },
+      "id": "c88a858e-cee3-5040-873b-0d57388e0407",
+      "name": "Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -40,
+        -260
+      ]
+    }
+  ],
+  "connections": {
+    "Every morning": {
+      "main": [
+        [
+          {
+            "node": "New tenders",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}
