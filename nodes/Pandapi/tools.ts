@@ -824,7 +824,7 @@ export const TOOLS: PandapiTool[] = [
 			},
 			"languages": {
 				"type": "array",
-				"description": "Language codes (en, es, fr, de, ...) or \"all\". Default [\"auto\"]: English plus any non-Latin script found.",
+				"description": "Language codes (en, es, fr, de, ...) or \"all\". Default [\"auto\"]: English, any non-Latin script found, and Spanish, French, German, Italian, Portuguese or Dutch text.",
 				"itemsType": "string"
 			},
 			"mode": {
@@ -859,6 +859,145 @@ export const TOOLS: PandapiTool[] = [
 			"onlyFlagged": {
 				"type": "boolean",
 				"description": "Return only texts that contain profanity. Default false."
+			}
+		}
+	},
+	{
+		"key": "jobs",
+		"actor": "blueberry_rainstorm/company-jobs-tracker",
+		"title": "Company jobs from career sites",
+		"action": "Get open jobs from company career sites",
+		"description": "Every open job at the companies you name, read live from their career site (Greenhouse, Lever, Ashby, SmartRecruiters, Workable, Recruitee, Personio, BambooHR, Rippling, Teamtailor, Breezy; not Workday). Input a company name, website or job board link. Returns one row per job (title, department, locations, countryCode, workplace remote/hybrid/onsite, employmentType, seniority, salaryMin/Max/Currency/Period, postedAt, url) plus one free 'summary' row per company (open jobs, by department/country, remote share). With trackChanges, later runs return only new jobs plus free 'closed' rows (daysOpen). Good for hiring signals, job alerts and recruiting research.",
+		"baseInput": {
+			"companies": []
+		},
+		"defaults": {
+			"maxJobsPerCompany": 50,
+			"includeDescription": false
+		},
+		"required": [
+			"companies"
+		],
+		"anyOf": null,
+		"main": [
+			"companies"
+		],
+		"params": {
+			"companies": {
+				"type": "array",
+				"description": "Company names (Airbnb), websites (stripe.com) or job board links (https://jobs.lever.co/palantir).",
+				"itemsType": "string"
+			},
+			"keywords": {
+				"type": "array",
+				"description": "Keep jobs whose title contains any of these words (engineer, sales).",
+				"itemsType": "string"
+			},
+			"excludeKeywords": {
+				"type": "array",
+				"description": "Drop jobs whose title contains any of these words.",
+				"itemsType": "string"
+			},
+			"locations": {
+				"type": "array",
+				"description": "Cities, countries, 2-letter country codes (US, GB, DE) or 'remote'.",
+				"itemsType": "string"
+			},
+			"workplace": {
+				"type": "array",
+				"description": "Keep only these workplace types.",
+				"itemsEnum": [
+					"remote",
+					"hybrid",
+					"onsite"
+				],
+				"itemsType": "string"
+			},
+			"postedWithinDays": {
+				"type": "integer",
+				"description": "Only jobs posted in the last N days. 0 = any."
+			},
+			"includeDescription": {
+				"type": "boolean",
+				"description": "Add the full job text (longer output). Default false."
+			},
+			"maxJobsPerCompany": {
+				"type": "integer",
+				"description": "Most jobs per company after filters. Default 50."
+			},
+			"trackChanges": {
+				"type": "boolean",
+				"description": "Remember jobs between runs; later runs return only new jobs plus closed ones."
+			},
+			"watchlistName": {
+				"type": "string",
+				"description": "Name of the saved watchlist when trackChanges is on."
+			}
+		}
+	},
+	{
+		"key": "shopify",
+		"actor": "blueberry_rainstorm/shopify-app-store-reviews",
+		"title": "Shopify App Store reviews and app data",
+		"action": "Get Shopify App Store reviews",
+		"description": "Get Shopify App Store reviews (stars, text, date, merchant country, how long they used the app, developer reply) and app details (rating histogram, every pricing plan, developer, launch date, Built for Shopify, categories), plus a free per-app summary with reply rate, complaints and suspicious-review signals (bursts, day-one 5-star reviews, repeated wording) scored 0-100. Apps are apps.shopify.com links or handles like judgeme. Rows have type app, review, summary or problem.",
+		"baseInput": {
+			"apps": []
+		},
+		"defaults": {
+			"maxReviewsPerApp": 50
+		},
+		"required": [
+			"apps"
+		],
+		"anyOf": null,
+		"main": [
+			"apps"
+		],
+		"params": {
+			"apps": {
+				"type": "array",
+				"description": "Shopify App Store links or app handles (judgeme).",
+				"itemsType": "string"
+			},
+			"maxReviewsPerApp": {
+				"type": "integer",
+				"description": "Reviews per app. Default 50 here; 0 = app details only. About 400 a minute.",
+				"minimum": 0,
+				"maximum": 100000
+			},
+			"reviewSort": {
+				"type": "string",
+				"description": "Default newest (best for the suspicious-review signals).",
+				"enum": [
+					"newest",
+					"relevance"
+				]
+			},
+			"minRating": {
+				"type": "integer",
+				"description": "Only reviews with at least this many stars.",
+				"minimum": 1,
+				"maximum": 5
+			},
+			"maxRating": {
+				"type": "integer",
+				"description": "Only reviews with at most this many stars.",
+				"minimum": 1,
+				"maximum": 5
+			},
+			"keywords": {
+				"type": "array",
+				"description": "Only reviews mentioning any of these words.",
+				"itemsType": "string"
+			},
+			"reviewsSince": {
+				"type": "string",
+				"description": "Only reviews on or after this date (YYYY-MM-DD)."
+			},
+			"includeAppDetails": {
+				"type": "boolean",
+				"description": "One app row with pricing plans and histogram. Default true."
 			}
 		}
 	}

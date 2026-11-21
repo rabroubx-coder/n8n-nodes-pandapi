@@ -1,6 +1,6 @@
 # n8n-nodes-pandapi
 
-The **Pandapi** node for [n8n](https://n8n.io): 12 data tools in one node, each with plain form fields (no JSON input to write).
+The **Pandapi** node for [n8n](https://n8n.io): 14 data tools in one node, each with plain form fields (no JSON input to write).
 
 | Operation | What it does | Price |
 |---|---|---|
@@ -12,10 +12,12 @@ The **Pandapi** node for [n8n](https://n8n.io): 12 data tools in one node, each 
 | Search public tenders and contracts | SAM.gov, TED (EU), UK, CanadaBuys and World Bank notices in one format | $2 per 1,000 notices |
 | Get App Store reviews | iOS reviews, ratings, app details, search and top charts | $0.15 per 1,000 reviews |
 | Get Google Play reviews | Android reviews with developer replies, ratings, search and charts | $0.10 per 1,000 reviews |
+| Get Shopify App Store reviews | Shopify app reviews with developer replies, pricing plans and app details, plus free suspicious-review signals | $0.10 per 1,000 reviews |
 | Look up postal codes and distances | ZIP/postal codes in 124 countries: place, coordinates, distance, radius | $0.30 per 1,000 results |
 | Convert HTML or web pages to PDF | URLs, HTML or a template plus JSON rows (invoices, certificates) | $3 per 1,000 PDFs |
 | Search Hacker News | Stories, comments, Show HN, jobs and the front page with filters | $0.20 per 1,000 items |
 | Filter profanity in texts | Find and mask swear words in 26 languages (catches sh1t, no Scunthorpe false alarms) | $0.20 per 1,000 texts |
+| Get open jobs from company career sites | Every open job at the companies you name (Greenhouse, Lever, Ashby and 8 more), new and closed jobs tracked, free hiring summary | $1 per 1,000 jobs |
 
 The tools run on **your own Apify account** (pay per result, failed runs are free, no start fees). Apify's free plan includes monthly credit, which covers thousands of results of most tools.
 
