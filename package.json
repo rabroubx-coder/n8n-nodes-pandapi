@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-pandapi",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "n8n node for Pandapi data tools: web pages and PDFs to Markdown, PDF tables to Excel, screenshots, broken links, website contacts, public tenders, App Store, Google Play and Shopify app reviews, postal codes, HTML to PDF, Hacker News, a profanity filter and company job listings. Runs on your own Apify account.",
 	"license": "MIT",
 	"homepage": "https://github.com/rabroubx-coder/n8n-nodes-pandapi#readme",

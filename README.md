@@ -1,6 +1,6 @@
 # n8n-nodes-pandapi
 
-The **Pandapi** node for [n8n](https://n8n.io): 14 data tools in one node, each with plain form fields (no JSON input to write).
+The **Pandapi** node for [n8n](https://n8n.io): 18 data tools in one node, each with plain form fields (no JSON input to write).
 
 | Operation | What it does | Price |
 |---|---|---|
@@ -18,6 +18,10 @@ The **Pandapi** node for [n8n](https://n8n.io): 14 data tools in one node, each 
 | Search Hacker News | Stories, comments, Show HN, jobs and the front page with filters | $0.20 per 1,000 items |
 | Filter profanity in texts | Find and mask swear words in 26 languages (catches sh1t, no Scunthorpe false alarms) | $0.20 per 1,000 texts |
 | Get open jobs from company career sites | Every open job at the companies you name (Greenhouse, Lever, Ashby and 8 more), new and closed jobs tracked, free hiring summary | $1 per 1,000 jobs |
+| Get store products and prices | Every product, price, variant and stock status of any Shopify or WooCommerce store, with price-drop and new-product monitoring | $0.50 per 1,000 products |
+| Detect a website tech stack | What sites run from 7,700 technologies, with social links and contacts in the same row | $1.50 per 1,000 sites |
+| Check domains (WHOIS, DNS, email security, SSL) | Availability, registrar and expiry, DNS, SPF/DMARC/DKIM, SSL expiry and a plain list of problems | $1.50 per 1,000 domains |
+| Get Google ads of an advertiser | Every Google ad of an advertiser or website with headline, text, run dates and landing page, plus new and stopped ads | $1.20 per 1,000 ads |
 
 The tools run on **your own Apify account** (pay per result, failed runs are free, no start fees). Apify's free plan includes monthly credit, which covers thousands of results of most tools.
 
